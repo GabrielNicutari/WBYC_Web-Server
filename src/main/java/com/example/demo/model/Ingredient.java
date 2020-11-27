@@ -89,7 +89,7 @@ public class Ingredient {
     public void setOrderHasProductsById(Collection<OrderHasProducts> orderHasProductsById) {
         this.orderHasProductsById = orderHasProductsById;
     }
-    
+
     @OneToMany(mappedBy = "ingredientsByIngredientId")
     public Collection<RecipeHasIngredients> getRecipeHasIngredientsById() {
         return recipeHasIngredientsById;
