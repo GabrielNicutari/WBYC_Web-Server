@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -53,6 +55,7 @@ public class RecipeHasIngredients {
         return result;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "recipe_id", referencedColumnName = "id", nullable = false)
     public Recipe getRecipesByRecipeId() {
@@ -62,6 +65,7 @@ public class RecipeHasIngredients {
     public void setRecipesByRecipeId(Recipe recipesByRecipeId) {
         this.recipesByRecipeId = recipesByRecipeId;
     }
+
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id", referencedColumnName = "id", nullable = false)

@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -21,7 +22,15 @@ public class Recipe {
     private Collection<OrderHasProducts> orderHasProductsById;
     private Collection<RecipeHasIngredients> recipeHasIngredientsById;
 
+    public Recipe(int id) {
+        this.id = id;
+    }
+
+    public Recipe() {}
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name="native", strategy = "native")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -168,7 +177,6 @@ public class Recipe {
         this.orderHasProductsById = orderHasProductsById;
     }
 
-    @JsonBackReference
     @OneToMany(mappedBy = "recipesByRecipeId")
     public Collection<RecipeHasIngredients> getRecipeHasIngredientsById() {
         return recipeHasIngredientsById;
