@@ -91,13 +91,13 @@ public class IngredientService {
     // update
     public ResponseEntity<Ingredient> updateIngredient(int id, Ingredient ingredient) {
         Ingredient _ingredient = ingredientRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found ingredient with id" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("The ingredient with id: " + id + " was not found!"));
 
         _ingredient.setName(ingredient.getName());
         _ingredient.setPricePerUnit(ingredient.getPricePerUnit());
         _ingredient.setMeasurementUnitByMeasurementUnitId(ingredient.getMeasurementUnitByMeasurementUnitId());
 
-        return new ResponseEntity<>(ingredientRepository.save(ingredient), HttpStatus.OK);
+        return new ResponseEntity<>(ingredientRepository.save(_ingredient), HttpStatus.OK);
     }
 
     // delete
