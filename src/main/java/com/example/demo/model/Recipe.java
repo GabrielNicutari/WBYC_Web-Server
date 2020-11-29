@@ -1,10 +1,16 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "recipes", schema = "wbyc")
 public class Recipe {
@@ -119,43 +125,6 @@ public class Recipe {
 
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Recipe recipe = (Recipe) o;
-
-        if (id != recipe.id) return false;
-        if (prepTime != recipe.prepTime) return false;
-        if (cookTime != recipe.cookTime) return false;
-        if (portions != recipe.portions) return false;
-        if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
-        if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
-        if (author != null ? !author.equals(recipe.author) : recipe.author != null) return false;
-        if (instructions != null ? !instructions.equals(recipe.instructions) : recipe.instructions != null)
-            return false;
-        if (iconSrc != null ? !iconSrc.equals(recipe.iconSrc) : recipe.iconSrc != null) return false;
-        if (imageSrc != null ? !imageSrc.equals(recipe.imageSrc) : recipe.imageSrc != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + prepTime;
-        result = 31 * result + cookTime;
-        result = 31 * result + portions;
-        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
-        result = 31 * result + (iconSrc != null ? iconSrc.hashCode() : 0);
-        result = 31 * result + (imageSrc != null ? imageSrc.hashCode() : 0);
-        return result;
     }
 
     @JsonBackReference

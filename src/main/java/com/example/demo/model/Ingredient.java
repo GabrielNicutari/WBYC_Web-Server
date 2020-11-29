@@ -1,10 +1,16 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "ingredients", schema = "wbyc")
 public class Ingredient {
@@ -36,38 +42,13 @@ public class Ingredient {
     }
 
     @Basic
-    @Column(name = "price_per_unit", nullable = false, precision = 0)
+    @Column(name = "price_per_unit", nullable = false)
     public double getPricePerUnit() {
         return pricePerUnit;
     }
 
     public void setPricePerUnit(double pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Ingredient that = (Ingredient) o;
-
-        if (id != that.id) return false;
-        if (Double.compare(that.pricePerUnit, pricePerUnit) != 0) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        temp = Double.doubleToLongBits(pricePerUnit);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
     }
 
     @ManyToOne

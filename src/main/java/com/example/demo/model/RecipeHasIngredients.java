@@ -1,7 +1,14 @@
 package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "recipe_has_ingredients", schema = "wbyc")
 public class RecipeHasIngredients {
@@ -28,29 +35,6 @@ public class RecipeHasIngredients {
 
     public void setUnitSize(double unitSize) {
         this.unitSize = unitSize;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RecipeHasIngredients that = (RecipeHasIngredients) o;
-
-        if (id != that.id) return false;
-        if (Double.compare(that.unitSize, unitSize) != 0) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        temp = Double.doubleToLongBits(unitSize);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
     }
 
     @ManyToOne

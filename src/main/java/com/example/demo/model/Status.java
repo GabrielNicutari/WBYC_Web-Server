@@ -1,8 +1,15 @@
 package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "statuses", schema = "wbyc")
 public class Status {
@@ -28,26 +35,6 @@ public class Status {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Status status = (Status) o;
-
-        if (id != status.id) return false;
-        if (name != null ? !name.equals(status.name) : status.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
     }
 
     @OneToMany(mappedBy = "statusesByStatusId")
