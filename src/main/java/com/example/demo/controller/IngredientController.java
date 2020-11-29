@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Ingredient;
+import com.example.demo.service.IngredientService;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
-import java.util.Map;
 
 @CrossOrigin(origins = {
         "http://localhost:8081",
@@ -14,6 +18,10 @@ import java.util.Map;
 @RequestMapping("/ingredients")
 public class IngredientController {
 
+    @Autowired
+    IngredientService ingredientService;
+
+    // fetch
     @GetMapping({"/", ""})
     public ResponseEntity<Map<String, Object>> getPageOfRecipes(
             @RequestParam(required = false) String key,
@@ -21,7 +29,24 @@ public class IngredientController {
             @RequestParam(defaultValue = "3") int size,
             @RequestParam(defaultValue = "id,asc") String[] sort) {
 
-        System.out.println("w/e");
-        return null;
+        return ingredientService.getPageOfRecipes(key, page, size, sort);
+    }
+
+    // create
+    @PostMapping("/create")
+    public ResponseEntity<Ingredient> createIngredient(@RequestBody Ingredient ingredient) {
+        return ingredientService.createIngredient(ingredient);
+    }
+
+    // update
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Ingredient> updateIngredient(@PathVariable("id") int id, @RequestBody Ingredient ingredient) {
+        return ingredientService.updateIngredient(id, ingredient);
+    }
+
+    // delete
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteIngredient(@PathVariable("id") int id) {
+        return ingredientService.deleteIngredient(id);
     }
 }

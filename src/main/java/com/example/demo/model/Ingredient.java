@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -61,7 +63,7 @@ public class Ingredient {
         this.measurementUnitByMeasurementUnitId = measurementUnitByMeasurementUnitId;
     }
 
-    @JsonBackReference
+    @JsonBackReference(value="ingredienets")
     @OneToMany(mappedBy = "ingredientsByIngredientProductId")
     public Collection<OrderHasProducts> getOrderHasProductsById() {
         return orderHasProductsById;
@@ -71,6 +73,7 @@ public class Ingredient {
         this.orderHasProductsById = orderHasProductsById;
     }
 
+    @JsonBackReference(value="ingred2")
     @OneToMany(mappedBy = "ingredientsByIngredientId")
     public Collection<RecipeHasIngredients> getRecipeHasIngredientsById() {
         return recipeHasIngredientsById;

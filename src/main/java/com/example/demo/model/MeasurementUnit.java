@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,7 @@ public class MeasurementUnit {
     public void setType(String type) {
         this.type = type;
     }
-
+    
     @OneToMany(mappedBy = "measurementUnitByMeasurementUnitId")
     public Collection<Ingredient> getIngredientsById() {
         return ingredientsById;
