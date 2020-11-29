@@ -63,7 +63,7 @@ public class Ingredient {
         this.measurementUnitByMeasurementUnitId = measurementUnitByMeasurementUnitId;
     }
 
-    @JsonBackReference(value="ingredienets")
+    @JsonBackReference(value="ingredientsByIngredientProductId")
     @OneToMany(mappedBy = "ingredientsByIngredientProductId")
     public Collection<OrderHasProducts> getOrderHasProductsById() {
         return orderHasProductsById;
@@ -73,7 +73,7 @@ public class Ingredient {
         this.orderHasProductsById = orderHasProductsById;
     }
 
-    @JsonBackReference(value="ingred2")
+    @JsonBackReference(value="ingredientsByIngredientId")
     @OneToMany(mappedBy = "ingredientsByIngredientId")
     public Collection<RecipeHasIngredients> getRecipeHasIngredientsById() {
         return recipeHasIngredientsById;

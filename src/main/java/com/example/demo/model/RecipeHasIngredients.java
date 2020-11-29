@@ -50,6 +50,7 @@ public class RecipeHasIngredients {
         this.recipesByRecipeId = recipesByRecipeId;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "ingredient_id", referencedColumnName = "id", nullable = false)
     public Ingredient getIngredientsByIngredientId() {
