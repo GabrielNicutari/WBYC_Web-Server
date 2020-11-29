@@ -11,10 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.*;
 
@@ -90,11 +87,9 @@ public class IngredientService {
 
         return new ResponseEntity<>(_ingredient, HttpStatus.CREATED);
     }
-
-
+    
     // update
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Ingredient> updateIngredient(@PathVariable("id") int id, @RequestBody Ingredient ingredient) {
+    public ResponseEntity<Ingredient> updateIngredient(int id, Ingredient ingredient) {
         Ingredient _ingredient = ingredientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found ingredient with id" + id));
 
@@ -106,8 +101,7 @@ public class IngredientService {
     }
 
     // delete
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteIngredient(@PathVariable("id") int id) {
+    public ResponseEntity<HttpStatus> deleteIngredient(int id) {
         ingredientRepository.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
