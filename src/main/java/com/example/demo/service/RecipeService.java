@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.RecipeHasIngredients;
 import com.example.demo.repository.RecipeHasIngredientsRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.*;
 
 @Service
@@ -48,6 +50,19 @@ public class RecipeService {
         }
     }
 
+    private Map<String, Object> createResponse(List<Recipe> recipes
+                                               , Page<Recipe> pageItems) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("recipes", recipes);
+        response.put("currentPage", pageItems.getNumber());
+        response.put("totalItems", pageItems.getTotalElements());
+        response.put("totalPages", pageItems.getTotalPages());
+
+        return response;
+    }
+
     // FETCH
     public ResponseEntity<Map<String,Object>> getPageOfRecipes(
             String key
@@ -74,14 +89,9 @@ public class RecipeService {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         // creating a customized response in case of an error
-        Map<String, Object> response = new HashMap<>();
-        response.put("recipes", recipes);
-        response.put("currentPage", pageItems.getNumber());
-        response.put("totalItems", pageItems.getTotalElements());
-        response.put("totalPages", pageItems.getTotalPages());
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(createResponse(recipes, pageItems), HttpStatus.OK);
     }
+
 
     // CREATE
     public ResponseEntity<Recipe> createRecipe(Recipe recipe) {
@@ -98,10 +108,40 @@ public class RecipeService {
 
             recipeHasIngredientsRepository.save(recipeHasIngredients);
         }
+
         return new ResponseEntity<>(_recipe, HttpStatus.CREATED);
     }
-    // update
-    // delete
+
+
+    // UPDATE
+    public ResponseEntity<Recipe> updateRecipe(int id, Recipe recipe) {
+        Recipe _recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Recipe with id: " + id + " not found"));
+
+        System.out.println(_recipe.getAuthor());
+
+        _recipe.setName(recipe.getName());
+        _recipe.setDescription(recipe.getDescription());
+        _recipe.setAuthor(recipe.getAuthor());
+        _recipe.setPrepTime(recipe.getPrepTime());
+        _recipe.setCookTime(recipe.getCookTime());
+        _recipe.setPortions(recipe.getPortions());
+        _recipe.setIconSrc(recipe.getIconSrc());
+        _recipe.setImageSrc(recipe.getImageSrc());
+        _recipe.setImageSrc(recipe.getImageSrc());
+
+
+        return new ResponseEntity<>(recipeRepository.save(_recipe), HttpStatus.OK);
+    }
+
+
+    // DELETE
+        public ResponseEntity<HttpStatus> deleteRecipe(int id) {
+            recipeRepository.deleteById(id);
+
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
 
     }
 
