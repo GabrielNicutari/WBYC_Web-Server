@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Entity
+@JsonDeserialize
 @Table(name = "recipe_has_ingredients", schema = "wbyc")
 public class RecipeHasIngredients {
     private int id;
