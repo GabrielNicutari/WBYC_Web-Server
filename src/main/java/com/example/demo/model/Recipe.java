@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -30,8 +31,6 @@ public class Recipe {
     public Recipe(int id) {
         this.id = id;
     }
-
-    public Recipe() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")

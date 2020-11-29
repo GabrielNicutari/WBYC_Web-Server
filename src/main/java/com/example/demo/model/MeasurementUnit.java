@@ -37,7 +37,8 @@ public class MeasurementUnit {
     public void setType(String type) {
         this.type = type;
     }
-    
+
+    @JsonBackReference(value = "measurement")
     @OneToMany(mappedBy = "measurementUnitByMeasurementUnitId")
     public Collection<Ingredient> getIngredientsById() {
         return ingredientsById;

@@ -40,6 +40,7 @@ public class RecipeHasIngredients {
         this.unitSize = unitSize;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "recipe_id", referencedColumnName = "id", nullable = false)
     public Recipe getRecipesByRecipeId() {

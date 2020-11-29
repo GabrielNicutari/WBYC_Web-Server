@@ -21,6 +21,10 @@ public class Order {
     private Customer customersByCustomerId;
     private Status statusesByStatusId;
 
+    public Order(int id) {
+        this.id = id;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {
