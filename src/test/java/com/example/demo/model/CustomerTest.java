@@ -22,7 +22,7 @@ class CustomerTest {
         orders.add(new Order(4));
     }
 
-    private Customer customer = new Customer(0,"James", "Copperfield", date, "UK",
+    private final Customer customer = new Customer(0,"James", "Copperfield", date, "UK",
             "Wolf Street", "London", "+447911123456", orders);
 
     @Test
@@ -120,7 +120,6 @@ class CustomerTest {
         Collection<Order> list = new ArrayList<>();
         list.add(new Order(1));
         list.add(new Order(4));
-        
         assertEquals(list, customer.getOrdersById());
     }
 
@@ -143,14 +142,26 @@ class CustomerTest {
 
     @Test
     void testHashCode() {
-        int result = customer.getId();
-        result = 31 * result + (customer.getFirstName() != null ? customer.getFirstName().hashCode() : 0);
-        result = 31 * result + (customer.getLastName() != null ? customer.getLastName().hashCode() : 0);
-        result = 31 * result + (customer.getDateOfBirth() != null ? customer.getDateOfBirth().hashCode() : 0);
-        result = 31 * result + (customer.getCountry() != null ? customer.getCountry().hashCode() : 0);
-        result = 31 * result + (customer.getAddress() != null ? customer.getAddress().hashCode() : 0);
-        result = 31 * result + (customer.getCity() != null ? customer.getCity().hashCode() : 0);
-        result = 31 * result + (customer.getPhoneNumber() != null ? customer.getPhoneNumber().hashCode() : 0);
+        final int PRIME = 59;
+        int result = 1;
+        result = result * PRIME + customer.getId();
+        final Object $firstName = customer.getFirstName();
+        result = result * PRIME + ($firstName == null ? 43 : $firstName.hashCode());
+        final Object $lastName = customer.getLastName();
+        result = result * PRIME + ($lastName == null ? 43 : $lastName.hashCode());
+        final Object $dateOfBirth = customer.getDateOfBirth();
+        result = result * PRIME + ($dateOfBirth == null ? 43 : $dateOfBirth.hashCode());
+        final Object $country = customer.getCountry();
+        result = result * PRIME + ($country == null ? 43 : $country.hashCode());
+        final Object $address = customer.getAddress();
+        result = result * PRIME + ($address == null ? 43 : $address.hashCode());
+        final Object $city = customer.getCity();
+        result = result * PRIME + ($city == null ? 43 : $city.hashCode());
+        final Object $phoneNumber = customer.getPhoneNumber();
+        result = result * PRIME + ($phoneNumber == null ? 43 : $phoneNumber.hashCode());
+        final Object $ordersById = customer.getOrdersById();
+        result = result * PRIME + ($ordersById == null ? 43 : $ordersById.hashCode());
+
         assertEquals(result, customer.hashCode());
     }
 }

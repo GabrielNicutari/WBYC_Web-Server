@@ -18,6 +18,10 @@ public class OrderHasProducts {
     private Ingredient ingredientsByIngredientProductId;
     private Recipe recipesByRecipeProductId;
 
+    public OrderHasProducts(int id) {
+        this.id = id;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

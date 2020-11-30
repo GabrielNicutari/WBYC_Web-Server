@@ -24,6 +24,10 @@ public class Customer {
     private String phoneNumber;
     private Collection<Order> ordersById;
 
+    public Customer(int id) {
+        this.id = id;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

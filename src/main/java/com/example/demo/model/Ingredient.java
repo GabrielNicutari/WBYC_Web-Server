@@ -1,18 +1,14 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "ingredients", schema = "wbyc")
 public class Ingredient {
@@ -20,8 +16,10 @@ public class Ingredient {
     private String name;
     private double pricePerUnit;
     private MeasurementUnit measurementUnitByMeasurementUnitId;
-    private Collection<OrderHasProducts> orderHasProductsById;
-    private Collection<RecipeHasIngredients> recipeHasIngredientsById;
+
+    public Ingredient(int id) {
+        this.id = id;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -61,25 +59,5 @@ public class Ingredient {
 
     public void setMeasurementUnitByMeasurementUnitId(MeasurementUnit measurementUnitByMeasurementUnitId) {
         this.measurementUnitByMeasurementUnitId = measurementUnitByMeasurementUnitId;
-    }
-
-    @JsonBackReference(value="ingredientsByIngredientProductId")
-    @OneToMany(mappedBy = "ingredientsByIngredientProductId")
-    public Collection<OrderHasProducts> getOrderHasProductsById() {
-        return orderHasProductsById;
-    }
-
-    public void setOrderHasProductsById(Collection<OrderHasProducts> orderHasProductsById) {
-        this.orderHasProductsById = orderHasProductsById;
-    }
-
-    @JsonBackReference(value="ingredientsByIngredientId")
-    @OneToMany(mappedBy = "ingredientsByIngredientId")
-    public Collection<RecipeHasIngredients> getRecipeHasIngredientsById() {
-        return recipeHasIngredientsById;
-    }
-
-    public void setRecipeHasIngredientsById(Collection<RecipeHasIngredients> recipeHasIngredientsById) {
-        this.recipeHasIngredientsById = recipeHasIngredientsById;
     }
 }

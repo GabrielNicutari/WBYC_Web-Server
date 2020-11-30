@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +15,10 @@ import java.util.Collection;
 public class MeasurementUnit {
     private int id;
     private String type;
-    private Collection<Ingredient> ingredientsById;
+
+    public MeasurementUnit(int id) {
+        this.id = id;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -36,15 +38,5 @@ public class MeasurementUnit {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    @JsonBackReference(value = "measurement")
-    @OneToMany(mappedBy = "measurementUnitByMeasurementUnitId")
-    public Collection<Ingredient> getIngredientsById() {
-        return ingredientsById;
-    }
-
-    public void setIngredientsById(Collection<Ingredient> ingredientsById) {
-        this.ingredientsById = ingredientsById;
     }
 }

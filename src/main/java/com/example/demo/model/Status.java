@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +14,10 @@ import java.util.Collection;
 public class Status {
     private int id;
     private String name;
-    private Collection<Order> ordersById;
+
+    public Status(int id) {
+        this.id = id;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -35,14 +37,5 @@ public class Status {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @OneToMany(mappedBy = "statusesByStatusId")
-    public Collection<Order> getOrdersById() {
-        return ordersById;
-    }
-
-    public void setOrdersById(Collection<Order> ordersById) {
-        this.ordersById = ordersById;
     }
 }

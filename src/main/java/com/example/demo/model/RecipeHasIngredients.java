@@ -20,6 +20,10 @@ public class RecipeHasIngredients {
     private Recipe recipesByRecipeId;
     private Ingredient ingredientsByIngredientId;
 
+    public RecipeHasIngredients(int id) {
+        this.id = id;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

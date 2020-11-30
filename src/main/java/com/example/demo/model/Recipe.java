@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Collection;
 
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "recipes", schema = "wbyc")
 public class Recipe {
@@ -25,7 +24,6 @@ public class Recipe {
     private String instructions;
     private String iconSrc;
     private String imageSrc;
-    private Collection<OrderHasProducts> orderHasProductsById;
     private Collection<RecipeHasIngredients> recipeHasIngredientsById;
 
     public Recipe(int id) {
@@ -132,16 +130,6 @@ public class Recipe {
 
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
-    }
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "recipesByRecipeProductId")
-    public Collection<OrderHasProducts> getOrderHasProductsById() {
-        return orderHasProductsById;
-    }
-
-    public void setOrderHasProductsById(Collection<OrderHasProducts> orderHasProductsById) {
-        this.orderHasProductsById = orderHasProductsById;
     }
 
     @OneToMany(mappedBy = "recipesByRecipeId")
