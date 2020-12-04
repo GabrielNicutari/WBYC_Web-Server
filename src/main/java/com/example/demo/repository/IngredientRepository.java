@@ -10,6 +10,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
 
-    @Query(value = "SELECT i.* FROM ingredients i WHERE (i.name LIKE CONCAT('%',:key,'%') ", nativeQuery = true)
+    @Query(value = "SELECT i.* FROM ingredients i WHERE (i.name LIKE CONCAT('%',:key,'%')) ", nativeQuery = true)
     Page<Ingredient> findAllByKeyword(@Param("key") String key, Pageable pageable);
 }

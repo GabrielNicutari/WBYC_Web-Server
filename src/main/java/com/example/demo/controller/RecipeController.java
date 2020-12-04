@@ -30,7 +30,7 @@ public class RecipeController {
     public ResponseEntity<Map<String, Object>> getPageOfRecipes(
             @RequestParam(required = false) String key,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size,
+            @RequestParam(defaultValue = "12") int size,
             @RequestParam(defaultValue = "id,asc") String[] sort) {
 
         return recipeService.getPageOfRecipes(key, page, size, sort);
