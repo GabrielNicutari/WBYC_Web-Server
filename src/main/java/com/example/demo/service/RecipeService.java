@@ -136,12 +136,17 @@ public class RecipeService {
 
 
     // DELETE
-        public ResponseEntity<HttpStatus> deleteRecipe(int id) {
-            recipeRepository.deleteById(id);
+    public ResponseEntity<HttpStatus> deleteRecipe(int id) {
+        recipeRepository.deleteById(id);
 
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+    public ResponseEntity<Recipe> getRecipe(int id) {
+        Recipe recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found recipe with id = " + id));
+        return new ResponseEntity<>(recipe, HttpStatus.OK);
+    }
+}
 

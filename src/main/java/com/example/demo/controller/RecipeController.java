@@ -36,12 +36,17 @@ public class RecipeController {
         return recipeService.getPageOfRecipes(key, page, size, sort);
     }
 
-
     // create
     @PostMapping("/create")
     public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
 
         return recipeService.createRecipe(recipe);
+    }
+
+    // get one
+    @GetMapping("/{id}")
+    public ResponseEntity<Recipe> getRecipe(@PathVariable("id") int id) {
+        return recipeService.getRecipe(id);
     }
 
 
