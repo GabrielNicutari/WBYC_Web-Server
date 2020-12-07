@@ -50,12 +50,12 @@ public class RecipeService {
         }
     }
 
-    private Map<String, Object> createResponse(List<Recipe> recipes
-                                               , Page<Recipe> pageItems) {
+    private Map<String, Object> createResponse(List<Recipe> recipes, Page<Recipe> pageItems, int size) {
 
         Map<String, Object> response = new HashMap<>();
 
         response.put("recipes", recipes);
+        response.put("size", size);
         response.put("currentPage", pageItems.getNumber());
         response.put("totalItems", pageItems.getTotalElements());
         response.put("totalPages", pageItems.getTotalPages());
@@ -89,7 +89,7 @@ public class RecipeService {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         // creating a customized response in case of an error
-        return new ResponseEntity<>(createResponse(recipes, pageItems), HttpStatus.OK);
+        return new ResponseEntity<>(createResponse(recipes, pageItems, size), HttpStatus.OK);
     }
 
 
