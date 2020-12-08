@@ -15,6 +15,7 @@ public class Ingredient {
     private int id;
     private String name;
     private double pricePerUnit;
+    private String imageSrc;
     private MeasurementUnit measurementUnitByMeasurementUnitId;
 
     public Ingredient(int id) {
@@ -49,6 +50,16 @@ public class Ingredient {
 
     public void setPricePerUnit(double pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
+    }
+
+    @Basic
+    @Column(name ="image_src", nullable = true)
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
     }
 
     @ManyToOne

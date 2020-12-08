@@ -74,6 +74,7 @@ public class IngredientService {
         // creating a customized response in case of an error
         Map<String, Object> response = new HashMap<>();
         response.put("ingredients", ingredients);
+        response.put("size", size);
         response.put("currentPage", pageItems.getNumber());
         response.put("totalItems", pageItems.getTotalElements());
         response.put("totalPages", pageItems.getTotalPages());

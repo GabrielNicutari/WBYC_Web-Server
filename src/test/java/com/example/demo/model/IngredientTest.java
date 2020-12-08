@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IngredientTest {
 
-    private final Ingredient ingredient = new Ingredient(0, "Salt", 1.5, new MeasurementUnit(10));
+    private final Ingredient ingredient = new Ingredient(0, "Salt", 1.5,
+            "https://p7.hiclipart.com/preview/114/422/487/loin-pain-hematuria-syndrome-magnesium-sulfate-preventive-healthcare-salt-salt-thumbnail.jpg",
+            new MeasurementUnit(10));
 
     @Test
     void getId() {
