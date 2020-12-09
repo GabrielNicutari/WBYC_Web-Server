@@ -96,6 +96,7 @@ public class IngredientService {
 
         _ingredient.setName(ingredient.getName());
         _ingredient.setPricePerUnit(ingredient.getPricePerUnit());
+        _ingredient.setImageSrc(ingredient.getImageSrc());
         _ingredient.setMeasurementUnitByMeasurementUnitId(ingredient.getMeasurementUnitByMeasurementUnitId());
 
         return new ResponseEntity<>(ingredientRepository.save(_ingredient), HttpStatus.OK);
