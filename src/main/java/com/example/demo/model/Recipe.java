@@ -30,6 +30,22 @@ public class Recipe {
         this.id = id;
     }
 
+    public Recipe(String name, String description, String author,
+                  int prepTime, int cookTime, int portions,
+                  String instructions, String iconSrc, String imageSrc,
+                  Collection<RecipeHasIngredients> recipeHasIngredientsById) {
+        this.name = name;
+        this.description = description;
+        this.author = author;
+        this.prepTime = prepTime;
+        this.cookTime = cookTime;
+        this.portions = portions;
+        this.instructions = instructions;
+        this.iconSrc = iconSrc;
+        this.imageSrc = imageSrc;
+        this.recipeHasIngredientsById = recipeHasIngredientsById;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name="native", strategy = "native")

@@ -3,6 +3,7 @@ package com.example.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -22,8 +23,16 @@ public class Ingredient {
         this.id = id;
     }
 
+    public Ingredient( String name, double pricePerUnit, MeasurementUnit measurementUnitByMeasurementUnitId) {
+        this.name = name;
+        this.pricePerUnit = pricePerUnit;
+        this.measurementUnitByMeasurementUnitId = measurementUnitByMeasurementUnitId;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name="native", strategy = "native")
     public int getId() {
         return id;
     }
