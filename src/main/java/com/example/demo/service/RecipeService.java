@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.*;
 
 @Service
@@ -128,7 +127,7 @@ public class RecipeService {
         _recipe.setPortions(recipe.getPortions());
         _recipe.setIconSrc(recipe.getIconSrc());
         _recipe.setImageSrc(recipe.getImageSrc());
-        _recipe.setImageSrc(recipe.getImageSrc());
+        _recipe.setPrice(recipe.getPrice());
 
 
         return new ResponseEntity<>(recipeRepository.save(_recipe), HttpStatus.OK);

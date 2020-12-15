@@ -18,7 +18,7 @@ class RecipeTest {
         recipeHasIngredients.add(new RecipeHasIngredients(4));
     }
     
-    private final Recipe recipe = new Recipe(0, "pasta", "spaghetti", "Dr. Oetker", 10, 25, 4, "cook", "icon", "image", recipeHasIngredients);
+    private final Recipe recipe = new Recipe(0, "pasta", "spaghetti", "Dr. Oetker", 10, 25, 4, "cook", "icon", "image", 250, recipeHasIngredients);
 
     @Test
     void getId() {

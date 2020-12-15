@@ -24,6 +24,7 @@ public class Recipe {
     private String instructions;
     private String iconSrc;
     private String imageSrc;
+    private double price;
     private Collection<RecipeHasIngredients> recipeHasIngredientsById;
 
     public Recipe(int id) {
@@ -130,6 +131,16 @@ public class Recipe {
 
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
+    }
+
+    @Basic
+    @Column(name = "price", nullable = true)
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @OneToMany(mappedBy = "recipesByRecipeId")
