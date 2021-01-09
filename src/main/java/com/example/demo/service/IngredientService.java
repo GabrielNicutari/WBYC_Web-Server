@@ -82,6 +82,11 @@ public class IngredientService {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    //get all ingredients
+    public ResponseEntity<List<Ingredient>> getAllIngredients() {
+        return new ResponseEntity<>(ingredientRepository.findAll(), HttpStatus.OK);
+    }
+
     // create
     public ResponseEntity<Ingredient> createIngredient(Ingredient ingredient) {
         Ingredient _ingredient = ingredientRepository.save(ingredient);

@@ -111,13 +111,18 @@ public class RecipeService {
         return new ResponseEntity<>(_recipe, HttpStatus.CREATED);
     }
 
+    public ResponseEntity<RecipeHasIngredients> insertIntoRecipeHasIngredients(RecipeHasIngredients recipeHasIngredients) {
+        RecipeHasIngredients _recipeHasIngredients = recipeHasIngredientsRepository.save(recipeHasIngredients);
+
+        return new ResponseEntity<>(_recipeHasIngredients, HttpStatus.CREATED);
+    }
+
 
     // UPDATE
     public ResponseEntity<Recipe> updateRecipe(int id, Recipe recipe) {
         Recipe _recipe = recipeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Recipe with id: " + id + " not found"));
 
-        System.out.println(_recipe.getAuthor());
 
         _recipe.setName(recipe.getName());
         _recipe.setDescription(recipe.getDescription());
@@ -128,7 +133,6 @@ public class RecipeService {
         _recipe.setIconSrc(recipe.getIconSrc());
         _recipe.setImageSrc(recipe.getImageSrc());
         _recipe.setPrice(recipe.getPrice());
-
 
         return new ResponseEntity<>(recipeRepository.save(_recipe), HttpStatus.OK);
     }

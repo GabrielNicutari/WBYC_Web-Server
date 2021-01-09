@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Recipe;
+import com.example.demo.model.RecipeHasIngredients;
 import com.example.demo.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -41,6 +42,12 @@ public class RecipeController {
     public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
 
         return recipeService.createRecipe(recipe);
+    }
+
+    @PostMapping("/insertIntoRecipeHasIngredients")
+    public ResponseEntity<RecipeHasIngredients> insertIntoRecipeHasIngredients(@RequestBody RecipeHasIngredients recipeHasIngredients) {
+
+        return recipeService.insertIntoRecipeHasIngredients(recipeHasIngredients);
     }
 
     // get one

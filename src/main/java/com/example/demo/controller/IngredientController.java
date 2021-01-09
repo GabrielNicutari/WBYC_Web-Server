@@ -32,6 +32,11 @@ public class IngredientController {
         return ingredientService.getPageOfRecipes(key, page, size, sort);
     }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Ingredient>> getAllIngredients() {
+        return ingredientService.getAllIngredients();
+    }
+
     // create
     @PostMapping("/create")
     public ResponseEntity<Ingredient> createIngredient(@RequestBody Ingredient ingredient) {
